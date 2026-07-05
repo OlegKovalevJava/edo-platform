@@ -17,6 +17,4 @@
     <name>EDO Platform - Domain</name>
     <description>Общие доменные модели, Value Objects, события</description>
 
-    <!-- Чистый домен без зависимостей от Spring -->
-
 </project>
