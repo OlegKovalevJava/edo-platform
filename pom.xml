@@ -23,6 +23,7 @@
     <modules>
         <module>domain</module>
         <module>api</module>
+        <module>persistence</module>
     </modules>
 
     <properties>

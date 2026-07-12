@@ -9,7 +9,7 @@ import java.util.UUID;
  * Иммутабельный, сериализуемый. Гарантирует валидность ID при создании.
  * Использует Record для иммутабельности и автогенерации equals/hashCode.
  */
-public record DocumentId(UUID value) implements Serializable {
+public record DocumentId(UUID value) {
 
     public DocumentId {
         Objects.requireNonNull(value, "Document ID value cannot be null");
@@ -21,7 +21,11 @@ public record DocumentId(UUID value) implements Serializable {
 
     public static DocumentId fromString(String value) {
         Objects.requireNonNull(value, "String value cannot be null");
-        return new DocumentId(UUID.fromString(value));
+        try {
+            return new DocumentId(UUID.fromString(value));
+        } catch (IllegalArgumentException e) {
+            throw new InvalidDocumentIdException(value, e);
+        }
     }
 
     @Override
