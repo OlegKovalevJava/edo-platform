@@ -1,6 +1,5 @@
 package com.edoplatform.domain.model;
 
-import java.util.Collections;
 import java.util.Set;
 
 /**
@@ -40,7 +39,7 @@ public enum DocumentStatus {
     ARCHIVED { // архив
         @Override
         public Set<DocumentStatus> allowedTransitions() {
-            return Collections.emptySet();
+            return Set.of();
         }
     };
 
