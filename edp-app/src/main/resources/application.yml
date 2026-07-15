@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: edo-platform
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/edo_platform
+    username: edo_user
+    password: edo_password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+server:
+  port: 8080

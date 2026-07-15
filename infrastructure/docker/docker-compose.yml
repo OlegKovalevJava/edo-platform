@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: edo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: edo_platform
+      POSTGRES_USER: edo_user
+      POSTGRES_PASSWORD: edo_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U edo_user -d edo_platform" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  postgres_data:
+    name: edo_postgres_data
