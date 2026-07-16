@@ -9,12 +9,6 @@ import org.mapstruct.Named;
 
 import java.util.UUID;
 
-/**
- * Маппер между доменной моделью {@link Document} и JPA-сущностью {@link DocumentEntity}.
- * <p>
- * Использует MapStruct с componentModel = "spring" для внедрения как Spring Bean.
- * Таможенная логика — DocumentId ↔ UUID — вынесена в default-методы.
- */
 @Mapper(componentModel = "spring")
 public interface DocumentMapper {
 
@@ -22,9 +16,17 @@ public interface DocumentMapper {
     @Mapping(target = "status", source = "status")
     DocumentEntity toEntity(Document document);
 
-    @Mapping(target = "id", source = "id", qualifiedByName = "uuidToDocumentId")
-    @Mapping(target = "status", source = "status")
-    Document toDomain(DocumentEntity entity);
+    default Document toDomain(DocumentEntity entity) {
+        if (entity == null) {
+            return null;
+        }
+        return Document.reconstruct(
+                uuidToDocumentId(entity.getId()),
+                entity.getStatus(),
+                entity.getCreatedAt(),
+                entity.getUpdatedAt()
+        );
+    }
 
     @Named("documentIdToUuid")
     default UUID documentIdToUuid(DocumentId documentId) {

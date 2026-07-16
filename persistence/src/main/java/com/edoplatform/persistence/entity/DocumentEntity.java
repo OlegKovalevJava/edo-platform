@@ -1,17 +1,18 @@
 package com.edoplatform.persistence.entity;
 
-import com.edoplatform.domain.model.Document;
 import com.edoplatform.domain.model.DocumentStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
-import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -19,7 +20,10 @@ import java.util.UUID;
 @Entity
 @Table(name = "documents")
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class DocumentEntity {
 
     @Id
@@ -35,27 +39,4 @@ public class DocumentEntity {
 
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
-
-    public static DocumentEntity from(Document document) {
-        DocumentEntity entity = new DocumentEntity();
-        entity.id = document.getId().value();
-        entity.status = document.getStatus();
-        entity.createdAt = document.getCreatedAt();
-        entity.updatedAt = document.getUpdatedAt();
-        return entity;
-    }
-
-    public Document toDomain() {
-        throw new UnsupportedOperationException("Use DocumentMapper for full reconstruction with events");
-    }
-
-    public void updateFrom(Document document) {
-        this.status = document.getStatus();
-        this.updatedAt = document.getUpdatedAt();
-    }
-
-    @PreUpdate
-    private void onUpdate() {
-        this.updatedAt = Instant.now();
-    }
 }

@@ -16,14 +16,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.0</version>
+        <version>4.1.0</version>  <!-- Меняем с 4.0.0 на 4.1.0 -->
         <relativePath/>
     </parent>
 
     <modules>
         <module>domain</module>
         <module>persistence</module>
-        <module>api-rest</module>
         <module>edp-app</module>
     </modules>
 
@@ -31,7 +30,7 @@
         <java.version>25</java.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
         <mapstruct.version>1.6.3</mapstruct.version>
-        <lombok.version>1.18.36</lombok.version>
+        <lombok.version>1.18.46</lombok.version>
     </properties>
 
     <dependencyManagement>
