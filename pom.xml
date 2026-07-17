@@ -22,8 +22,9 @@
 
     <modules>
         <module>domain</module>
-        <module>persistence</module>
         <module>edp-app</module>
+        <module>integration-soap</module>
+        <module>persistence</module>
     </modules>
 
     <properties>
