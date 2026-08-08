@@ -16,7 +16,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.1.0</version>  <!-- Меняем с 4.0.0 на 4.1.0 -->
+        <version>4.1.0</version>
         <relativePath/>
     </parent>
 
