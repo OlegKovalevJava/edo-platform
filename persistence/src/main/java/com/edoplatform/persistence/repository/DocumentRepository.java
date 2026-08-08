@@ -1,11 +1,16 @@
 package com.edoplatform.persistence.repository;
 
-import com.edoplatform.persistence.entity.DocumentEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.edoplatform.domain.model.Document;
+import com.edoplatform.domain.model.DocumentId;
 
-import java.util.UUID;
+import java.util.Optional;
 
-@Repository
-public interface DocumentRepository extends JpaRepository<DocumentEntity, UUID> {
+/**
+ * Репозиторий документов.
+ * Работает с доменной моделью {@link Document}, скрывая JPA-детали.
+ */
+public interface DocumentRepository {
+
+    Optional<Document> findById(DocumentId id);
+    void save(Document document);
 }

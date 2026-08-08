@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: edo-platform
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/edo_platform
+    username: edo_user
+    password: edo_password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080
